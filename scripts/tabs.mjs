@@ -51,7 +51,7 @@ pageRefresh.onclick = () => {
 };
 
 newTabButton.onclick = () => {
-  addTab("searx.be");
+  addTab("defaultuvpage.pages.dev");
 };
 
 // Options (opt menu)
@@ -128,7 +128,7 @@ const tabItem = (tab) => {
             if (tabs.length) focusTab(tabs[tabs.length - 1]);
             else
               setTimeout(() => {
-                addTab("seek.fyi");
+                addTab("defaultuvpage.pages.dev");
               }, 100);
           }
 
@@ -243,4 +243,4 @@ async function addTab(link) {
   focusTab(tab);
 }
 
-addTab("searx.be");
+addTab("defaultuvpage.pages.dev");

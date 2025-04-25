@@ -26,7 +26,7 @@ export async function getUV(input) {
     throw err;
   }
 
-  let url = search(input, "https://search.catboy.house/search?q=%s");
+  let url = search(input, "https://html.duckduckgo.com/html?t=h_&q=%s");
 
   let wispUrl = "wss://server.rhw.one/wisp/";
   if ((await connection.getTransport()) !== "/b/prxy/epoxy/index.mjs") {
