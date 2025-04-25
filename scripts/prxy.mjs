@@ -28,7 +28,7 @@ export async function getUV(input) {
 
   let url = search(input, "https://html.duckduckgo.com/html?t=h_&q=%s");
 
-  let wispUrl = "wss://server.rhw.one/wisp/";
+  let wispUrl = "wss://server.rhw.one/";
   if ((await connection.getTransport()) !== "/prxy/epoxy/index.mjs") {
     await connection.setTransport("/prxy/epoxy/index.mjs", [
       { wisp: wispUrl },
