@@ -7,9 +7,9 @@ This uses WISP technology
 
 How to use:
 ---
-1. Copy all files to root dir (`/`) of site
+1. Copy `/active` to root dir (`/`) of site
 
-2. Done! You can change the styles and app at will!
+2. Done! You will be able to  access the proxy at `/active`. If you change the location of the folder or change the name of the folder you will also have to modify `active/uv/uv.config.js` and `active/scripts/prxy.mjs`. You can change the styles and app at will!
 
 
 Disclaimer
