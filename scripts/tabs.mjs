@@ -51,7 +51,7 @@ pageRefresh.onclick = () => {
 };
 
 newTabButton.onclick = () => {
-  addTab("defaultuvpage.pages.dev");
+  addTab("uvsearch.rhw.one");
 };
 
 // Options (opt menu)
@@ -133,7 +133,7 @@ const tabItem = (tab) => {
             if (tabs.length) focusTab(tabs[tabs.length - 1]);
             else
               setTimeout(() => {
-                addTab("defaultuvpage.pages.dev");
+                addTab("uvsearch.rhw.one");
               }, 100);
           }
 
@@ -248,4 +248,4 @@ async function addTab(link) {
   focusTab(tab);
 }
 
-addTab("defaultuvpage.pages.dev");
+addTab("uvsearch.rhw.one");
