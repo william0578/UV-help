@@ -57,6 +57,7 @@ newTabButton.onclick = () => {
 // Options (opt menu)
 const devtoolsOption = document.getElementById("devtools-option");
 const abcOption = document.getElementById("abc-option");
+const gitOption = document.getElementById("git-option");
 
 devtoolsOption.onclick = () => {
   try {
@@ -71,6 +72,10 @@ devtoolsOption.onclick = () => {
 abcOption.onclick = () => {
   abCloak(selectedTab.view.src);
   rAlert("Opened in about:blank");
+};
+
+gitOption.onclick = () => {
+  window.open("https://github.com/rhenryw/UV-Static-2.0", "_blank");
 };
 
 urlForm.onsubmit = async (e) => {
