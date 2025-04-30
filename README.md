@@ -1,5 +1,6 @@
 # UV-Static-2.0
 UV-Static... But WISP and Tabbed!
+[![Join Our Discord](https://img.shields.io/badge/Join%20Our-Discord-purple)](https://discord.gg/redlv) [![maintenance-status](https://img.shields.io/badge/maintenance-passively--maintained-yellowgreen.svg)](https://github.com/rhenryw/UV-Static-2.0/commits/main/)
 
 This is a succesor to [UV-Static](https://github.com/rhenryw/UV-Static)
 
