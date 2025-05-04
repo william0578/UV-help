@@ -83,6 +83,7 @@
         checkServiceStatus();
     });
     
+    checkServiceStatus()
     
     const checkInterval = setInterval(checkServiceStatus, 120000);
     
