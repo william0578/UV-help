@@ -47,7 +47,7 @@ async function checkServiceStatus() {
           const deactivatedContent = `
               <h1>Service Deactivated By</h1>
               <div class="svg-container">
-                  <img src="https://cdn.jsdelivr.net/gh/rhenryw/rhw.one-git@main/cdn/axess.png" alt="AXESS Logo">
+                  <img src="https://uvsearch.rhw.one/logo.png" alt="AXESS Logo">
               </div>
           `;
           body.innerHTML = deactivatedContent; 
