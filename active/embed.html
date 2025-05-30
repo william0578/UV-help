@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embeddr Embed</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+        
+        #embed-frame {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+        
+        .loading-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 50%, #0f0f0f 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .loading-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.1), transparent);
+            animation: sweep 3s infinite;
+        }
+        
+        @keyframes sweep {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .loading-content {
+            text-align: center;
+            padding: 2rem;
+            z-index: 2;
+            position: relative;
+        }
+        
+        /* From Uiverse.io by Pradeepsaranbishnoi */ 
+        .🤚 {
+            --skin-color: #E4C560;
+            --tap-speed: 0.6s;
+            --tap-stagger: 0.1s;
+            position: relative;
+            width: 80px;
+            height: 60px;
+            margin: 0 auto 1rem;
+        }
+
+        .🤚:before {
+            content: '';
+            display: block;
+            width: 180%;
+            height: 75%;
+            position: absolute;
+            top: 70%;
+            right: 20%;
+            background-color: black;
+            border-radius: 40px 10px;
+            filter: blur(10px);
+            opacity: 0.3;
+        }
+
+        .🌴 {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: var(--skin-color);
+            border-radius: 10px 40px;
+        }
+
+        .👍 {
+            position: absolute;
+            width: 120%;
+            height: 38px;
+            background-color: var(--skin-color);
+            bottom: -18%;
+            right: 1%;
+            transform-origin: calc(100% - 20px) 20px;
+            transform: rotate(-20deg);
+            border-radius: 30px 20px 20px 10px;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+            border-left: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .👍:after {
+            width: 20%;
+            height: 60%;
+            content: '';
+            background-color: rgba(255, 255, 255, 0.3);
+            position: absolute;
+            bottom: -8%;
+            left: 5px;
+            border-radius: 60% 10% 10% 30%;
+            border-right: 2px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .👉 {
+            position: absolute;
+            width: 80%;
+            height: 35px;
+            background-color: var(--skin-color);
+            bottom: 32%;
+            right: 64%;
+            transform-origin: 100% 20px;
+            animation-duration: calc(var(--tap-speed) * 2);
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            transform: rotate(10deg);
+        }
+
+        .👉:before {
+            content: '';
+            position: absolute;
+            width: 140%;
+            height: 30px;
+            background-color: var(--skin-color);
+            bottom: 8%;
+            right: 65%;
+            transform-origin: calc(100% - 20px) 20px;
+            transform: rotate(-60deg);
+            border-radius: 20px;
+        }
+
+        .👉:nth-child(1) {
+            animation-delay: 0;
+            filter: brightness(70%);
+            animation-name: tap-upper-1;
+        }
+
+        .👉:nth-child(2) {
+            animation-delay: var(--tap-stagger);
+            filter: brightness(80%);
+            animation-name: tap-upper-2;
+        }
+
+        .👉:nth-child(3) {
+            animation-delay: calc(var(--tap-stagger) * 2);
+            filter: brightness(90%);
+            animation-name: tap-upper-3;
+        }
+
+        .👉:nth-child(4) {
+            animation-delay: calc(var(--tap-stagger) * 3);
+            filter: brightness(100%);
+            animation-name: tap-upper-4;
+        }
+
+        @keyframes tap-upper-1 {
+            0%, 50%, 100% {
+                transform: rotate(10deg) scale(0.4);
+            }
+            40% {
+                transform: rotate(50deg) scale(0.4);
+            }
+        }
+
+        @keyframes tap-upper-2 {
+            0%, 50%, 100% {
+                transform: rotate(10deg) scale(0.6);
+            }
+            40% {
+                transform: rotate(50deg) scale(0.6);
+            }
+        }
+
+        @keyframes tap-upper-3 {
+            0%, 50%, 100% {
+                transform: rotate(10deg) scale(0.8);
+            }
+            40% {
+                transform: rotate(50deg) scale(0.8);
+            }
+        }
+
+        @keyframes tap-upper-4 {
+            0%, 50%, 100% {
+                transform: rotate(10deg) scale(1);
+            }
+            40% {
+                transform: rotate(50deg) scale(1);
+            }
+        }
+        
+        .loading-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #8a2be2, #4169e1, #00ced1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: text-gradient 2s ease infinite;
+        }
+        
+        .loading-content p {
+            color: #aaaaaa;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        
+        .powered-by {
+            color: #888888;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .embeddr-logo {
+            max-width: 100px;
+            height: auto;
+            opacity: 0.8;
+        }
+        
+        @keyframes text-gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255,255,255,0.3);
+            border-top: 5px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: white;
+        }
+        
+        .error-content {
+            text-align: center;
+            padding: 2rem;
+            max-width: 500px;
+        }
+        
+        .error-content h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .error-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .url-example {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading-container" class="loading-container">
+        <div class="loading-content">
+            <div class="🤚">
+                <div class="🌴">
+                    <div class="👍"></div>
+                    <div class="👉"></div>
+                    <div class="👉"></div>
+                    <div class="👉"></div>
+                    <div class="👉"></div>
+                </div>
+            </div>
+            <div class="powered-by">Embed powered by</div>
+            <img src="logo.png" alt="Embeddr Logo" class="embeddr-logo">
+            <h2>Initializing UV Proxy...</h2>
+            <p>Setting up secure connection</p>
+        </div>
+    </div>
+    
+    <div id="error-container" class="error-container" style="display: none;">
+        <div class="error-content">
+            <h1>❌ Error</h1>
+            <p id="error-message">Something went wrong</p>
+            <div class="url-example">
+                Usage: /embed#https://example.com
+            </div>
+        </div>
+    </div>
+    
+    <iframe id="embed-frame" style="display: none;"></iframe>
+    
+    <!-- UV Dependencies -->
+    <script src="uv/uv.bundle.js"></script>
+    <script src="uv/uv.config.js"></script>
+    <script type="module">
+        import { registerSW } from "/active/prxy/register-sw.mjs";
+        import * as BareMux from "/active/prxy/baremux/index.mjs";
+
+        const connection = new BareMux.BareMuxConnection("/active/prxy/baremux/worker.js");
+
+        function search(input, template = "https://html.duckduckgo.com/html?t=h_&q=%s") {
+            try {
+                return new URL(input).toString();
+            } catch (err) {}
+
+            try {
+                const url = new URL(`http://${input}`);
+                if (url.hostname.includes(".")) return url.toString();
+            } catch (err) {}
+
+            return template.replace("%s", encodeURIComponent(input));
+        }
+
+        async function getUV(input) {
+            try {
+                await registerSW();
+                console.log("Service Worker registered successfully");
+            } catch (err) {
+                console.error("SW failed to register:", err);
+                throw err;
+            }
+
+            let url = search(input);
+
+            let wispUrl = "wss://wisp.rhw.one/";
+            if ((await connection.getTransport()) !== "/active/prxy/epoxy/index.mjs") {
+                await connection.setTransport("/active/prxy/epoxy/index.mjs", [
+                    { wisp: wispUrl },
+                ]);
+            }
+
+            let viewUrl = __uv$config.prefix + __uv$config.encodeUrl(url);
+            return viewUrl;
+        }
+
+        function getUrlFromFragment() {
+            const fragment = window.location.hash.substring(1);
+            return fragment || null;
+        }
+
+        function isValidUrl(string) {
+            if (!string) return false;
+            try {
+                const url = new URL(string);
+                return url.protocol === 'http:' || url.protocol === 'https:';
+            } catch (_) {
+                // Try with http:// prefix
+                try {
+                    const url = new URL(`http://${string}`);
+                    return url.hostname.includes('.');
+                } catch (_) {
+                    return false;
+                }
+            }
+        }
+
+        function showError(message) {
+            const loadingContainer = document.getElementById('loading-container');
+            const errorContainer = document.getElementById('error-container');
+            const errorMessage = document.getElementById('error-message');
+            
+            loadingContainer.style.display = 'none';
+            errorMessage.textContent = message;
+            errorContainer.style.display = 'flex';
+        }
+
+        function showLoading(message = "Initializing UV Proxy...") {
+            const loadingContainer = document.getElementById('loading-container');
+            const loadingText = loadingContainer.querySelector('h2');
+            loadingText.textContent = message;
+            loadingContainer.style.display = 'flex';
+        }
+
+        async function embedUrl() {
+            const url = getUrlFromFragment();
+            const iframe = document.getElementById('embed-frame');
+            const loadingContainer = document.getElementById('loading-container');
+            const errorContainer = document.getElementById('error-container');
+
+            // Reset displays
+            iframe.style.display = 'none';
+            errorContainer.style.display = 'none';
+            loadingContainer.style.display = 'flex';
+
+            if (!url) {
+                showError("No URL provided in fragment. Please add a URL after the # symbol.");
+                return;
+            }
+
+            if (!isValidUrl(url)) {
+                showError(`Invalid URL: "${url}". Please provide a valid HTTP or HTTPS URL.`);
+                return;
+            }
+
+            try {
+                showLoading("Connecting to proxy...");
+                
+                // Get the proxied URL through UV
+                const proxiedUrl = await getUV(url);
+                
+                showLoading("Loading content...");
+                
+                // Set up iframe load handler
+                iframe.onload = () => {
+                    loadingContainer.style.display = 'none';
+                    iframe.style.display = 'block';
+                    document.title = `UV Embed: ${url}`;
+                };
+
+                iframe.onerror = () => {
+                    showError(`Failed to load: ${url}. The target site may block embedding or be unreachable.`);
+                };
+
+                // Set the iframe source to the proxied URL
+                iframe.src = proxiedUrl;
+
+            } catch (error) {
+                console.error("Error setting up proxy:", error);
+                showError(`Proxy error: ${error.message || 'Failed to initialize proxy connection'}`);
+            }
+        }
+
+        // Listen for hash changes
+        window.addEventListener('hashchange', embedUrl);
+
+        // Initial load with a small delay to ensure dependencies are loaded
+        window.addEventListener('load', () => {
+            setTimeout(embedUrl, 100);
+        });
+
+        // If UV config is not loaded yet, wait for it
+        if (typeof __uv$config === 'undefined') {
+            const checkConfig = setInterval(() => {
+                if (typeof __uv$config !== 'undefined') {
+                    clearInterval(checkConfig);
+                    embedUrl();
+                }
+            }, 50);
+        }
+    </script>
+</body>
+</html> 
